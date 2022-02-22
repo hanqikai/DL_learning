@@ -1,4 +1,5 @@
 import random
+import numpy
 class MyDataset:
     def __init__(self, all_datas, batch_size, shuffle=True):
         self.all_data = all_datas
