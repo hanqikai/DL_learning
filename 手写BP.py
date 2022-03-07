@@ -40,9 +40,10 @@ if __name__ == '__main__':
     test_datas = load_images("data/t10k-images.idx3-ubyte")
     test_label = load_labels("data/t10k-labels.idx1-ubyte")
     # print(train_datas.shape, train_label.shape, test_datas.shape, test_label.shape)
-    epoch = 20
-    batch_size = 6000
-    lr = 0.01
+    epoch = 10
+    batch_size = 200
+    lr = 0.1
+    loss = 0
 
     hidden_num = 256
     w1 = np.random.normal(0, 1, size=(784, hidden_num))  # 满足均值为0，方差为1，大小为（784， 256大小的参数矩阵）
@@ -71,8 +72,13 @@ if __name__ == '__main__':
             #  更新梯度
             w1 -= lr * delta_w1
             w2 -= lr * delta_w2
-
-        print(loss)
+        h = test_datas @ w1
+        sig_h = sigmoid(h)
+        p = sig_h @ w2
+        pre = softmax(p)
+        index = np.argmax(pre, axis=1)
+        acc = np.sum(index == test_label) / 10000
+        print(acc)
 
 
 
