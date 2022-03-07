@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 
-def get_img(path:str):
+def get_img(path: str):
     img_files = os.listdir(path)
     result = []
     for file in img_files:
